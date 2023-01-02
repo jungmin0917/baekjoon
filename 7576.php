@@ -26,8 +26,8 @@ for ($i=0; $i < $n; $i++) {
     for ($j=0; $j < $m; $j++) { 
         if($box[$i][$j] == 1){
             // 익어있는 토마토들의 최상단 가지(좌표)들을 큐에 넣자
-            $tomato->unshift($j); // array로 넣을 시 메모리 초과하므로 따로따로 넣고 따로따로 뺌
-            $tomato->unshift($i);
+            $tomato->enqueue($j); // array로 넣을 시 메모리 초과하므로 따로따로 넣고 따로따로 뺌
+            $tomato->enqueue($i);
         }
     }
 }
@@ -45,8 +45,8 @@ $max = 0;
 // queue에서 더 이상 익힐 토마토가 없을 때까지 (새로 익힌 토마토를 큐에 넣으면서 진행)
 while(!($tomato->isEmpty())){
     // 맨 상단 트리부터 시작
-    $x = $tomato->pop(); // 큐에서 뺌
-    $y = $tomato->pop();
+    $x = $tomato->dequeue(); // 큐에서 뺌
+    $y = $tomato->dequeue();
 
     for ($i=0; $i < 4; $i++) {
         $new_x = $x + $dx[$i];
@@ -62,8 +62,8 @@ while(!($tomato->isEmpty())){
                 $max = $box[$new_y][$new_x];
             }
 
-            $tomato->unshift($new_x);
-            $tomato->unshift($new_y);
+            $tomato->enqueue($new_x);
+            $tomato->enqueue($new_y);
         }
     }
 
