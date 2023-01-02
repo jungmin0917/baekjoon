@@ -1,0 +1,7 @@
+SPL Extension을 사용해야만 한다.
+
+메모리를 아끼려면 SplFixedArray를 사용하고
+
+SplQueue, SplStack 등의 클래스로 단순 Array로 풀지 못했던 것들을 풀 수가 있다.
+
+다만, SplFixedArray를 Multidimension으로 사용할 경우, 기존 Array보다 더 느려진다
