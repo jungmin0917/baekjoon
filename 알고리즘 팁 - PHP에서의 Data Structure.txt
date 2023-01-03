@@ -1,4 +1,8 @@
-SPL Extension을 사용해야만 한다.
+자료구조 문제를 풀 때는 SPL Extension을 사용해야만 한다.
+
+(기존 Array로만 풀기에는 한계가 있다)
+
+PHP의 Array는 실제로는 Ordered Map이다
 
 메모리를 아끼려면 SplFixedArray를 사용하고
 
