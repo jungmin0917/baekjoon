@@ -1,0 +1,14 @@
+
+1. fscanf로 했을 때
+for($i=0; $i < 3000000; $i++){
+    list($a, $b, $c) = fscanf(STDIN, "%d %d %d");
+}
+// 결과 : 300만 회에 0.3s, 26400KB
+
+2. explode, fgets 조합으로 했을 때 (fgets를 적용할 수 없어 input으로 했음)
+$input = "1 2 3";
+for($i=0; $i < 3000000; $i++){
+    list($a, $b, $c) = explode(" ", $input);
+}
+// 결과 : 300만 회에 0.88s, 26244KB
+// fgets를 적용하지 않았음에도 훨씬 더 걸리는걸로 보아 explode가 상당히 느리다고 생각됨

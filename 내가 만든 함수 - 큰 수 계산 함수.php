@@ -16,8 +16,6 @@ function bigsum($a, $b){
             array_shift($b_array);
 
             $negative = true;
-        }else{
-            $negative = false;
         }
 
         // 끝 자리수부터 계산해야 하므로 뒤집는다
@@ -34,18 +32,12 @@ function bigsum($a, $b){
 
         $sum_array = array(); // array로 한 후 다시 합칠 것임
 
-        for ($i=0; $i < $count; $i++) {
-
+        for ($i=0; $i < $count; $i++) { 
             if(!isset($a_array[$i])){ // 해당 자리수에 없을 경우
                 $a_array[$i] = 0;
-            }else{
-                $a_array[$i] = intval($a_array[$i]);
             }
-
             if(!isset($b_array[$i])){
                 $b_array[$i] = 0;
-            }else{
-                $b_array[$i] = intval($b_array[$i]);
             }
 
             if($a_array[$i] + $b_array[$i] + $carry >= 10){ // 자리올림이 생길 경우
@@ -91,13 +83,6 @@ function bigsum($a, $b){
 
         if($a_count == $b_count){ // 자리수가 같은 경우 (복잡함)
 
-            // 네거티브를 아래쪽으로 내려 풀어야 함
-            if($negative == 'a'){
-                $temp_array = $a_array;
-                $a_array = $b_array;
-                $b_array = $temp_array;
-            }
-
             $count = $a_count;
 
             $borrow = 0; // 받아내림
@@ -105,8 +90,6 @@ function bigsum($a, $b){
             $sub_array = array(); // array로 한 후 다시 합칠 것임
 
             for ($i=0; $i < $count; $i++) { 
-                $a_array[$i] = intval($a_array[$i]);
-                $b_array[$i] = intval($b_array[$i]);
 
                 if($a_array[$i] - $b_array[$i] + $borrow < 0){ // 받아내림이 생길 경우
 
@@ -122,9 +105,6 @@ function bigsum($a, $b){
             if($borrow == -1){ // 마지막 자리에서도 내림이 남는 경우
                 // 각 자리에서 (10 - 각 자리 - 1)를 해 준다. (첫 자리는 10 - 각 자리)
                 for($i = 0; $i < $count; $i++){
-                    $a_array[$i] = intval($a_array[$i]);
-                    $b_array[$i] = intval($b_array[$i]);
-
                     if($i == 0){
                         $sub_array[$i] = 10 - $sub_array[$i];
                     }else{
@@ -136,13 +116,13 @@ function bigsum($a, $b){
             $sub_array = array_reverse($sub_array); // 다시 뒤집음
             
             // 앞에서부터 0인 원소들 제거
-            while(isset($sub_array[0]) && $sub_array[0] == 0){
+            while($sub_array[0] == 0){
                 array_shift($sub_array);
             }
 
             $sub = implode("", $sub_array); // 합쳐서 리턴
 
-            if($borrow == -1){ // 받아내림이 아직 있는 경우
+            if($borrow == -1){
                 $sub = "-" . $sub;
             }
 
@@ -151,6 +131,7 @@ function bigsum($a, $b){
         }else{ // 자릿수가 다른 경우
             
             if(($a_count > $b_count && $negative == 'a') || ($b_count > $a_count && $negative == 'b')){ // 큰 쪽이 마이너스인 경우
+                echo $negative . "\n";
                 $negative = true;
             }else{ // 이외의 경우 
                 $negative = false;
@@ -170,17 +151,11 @@ function bigsum($a, $b){
             $sub_array = array(); // array로 한 후 다시 합칠 것임
 
             for ($i=0; $i < $count; $i++) { 
-
                 if(!isset($a_array[$i])){ // 해당 자리수에 없을 경우
                     $a_array[$i] = 0;
-                }else{
-                    $a_array[$i] = intval($a_array[$i]);
                 }
-
                 if(!isset($b_array[$i])){
                     $b_array[$i] = 0;
-                }else{
-                    $b_array[$i] = intval($b_array[$i]);
                 }
                 
                 if($a_array[$i] - $b_array[$i] + $borrow < 0){ // 받아내림이 생길 경우
@@ -193,7 +168,7 @@ function bigsum($a, $b){
             }
 
             $sub_array = array_reverse($sub_array); // 다시 뒤집음
-
+            
             // 앞에서부터 0인 원소들 제거
             while($sub_array[0] == 0){
                 array_shift($sub_array);
@@ -210,34 +185,4 @@ function bigsum($a, $b){
     }
 }
 
-$result = "";
-
-for ($i=0; $i < 3; $i++) { 
-    fscanf(STDIN, "%d", $m);
-
-    $sum = "0";
-
-    for ($j=0; $j < $m; $j++) {
-        $a = trim(fgets(STDIN));
-
-        $sum = bigsum("{$sum}", "{$a}");
-
-        if(!$sum){
-            $sum = "0";
-        }
-    }
-
-    switch(substr($sum, 0, 1)){
-        case '0':
-            $result .= "0\n";
-            break;
-        case '-':
-            $result .= "-\n";
-            break;
-        default:
-            $result .= "+\n";
-            break;
-    }
-}
-
-echo $result;
+echo bigsum('9223372036854775807', '9223372036854775808');
