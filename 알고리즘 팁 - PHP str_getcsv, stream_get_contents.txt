@@ -1,0 +1,5 @@
+
+stream_get_contents 메소드 : 나머지 스트림을 문자열로 전부 읽음
+
+str_getcsv 메소드 : 문자열을 특정 separator로 나누어서 배열로 만듦
+
