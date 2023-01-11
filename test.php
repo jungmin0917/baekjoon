@@ -4,22 +4,39 @@ try{
 
 	$result = "";
 
-	fscanf(STDIN, "%d", $case);
+	while(true){
+		fscanf(STDIN, "%d", $n);
 
-	$text = "";
+		if(!$n){
+			break;
+		}
 
-	while(($buffer = fgets(STDIN, 4096)) !== false){
-		$text .= $buffer;
-	}
+		$array = str_split($n);
 
-	$array = explode("\n", $text);
+		$ten = 0;
 
-	for ($i=0; $i < $case; $i++) {
-		$result .= min(explode(" ", $array[$i * 2 + 1])) . " " . max(explode(" ", $array[$i * 2 + 1])) . "\n";
+		$c = count($array);
+
+		for ($i=$c; $i >= 1; $i--) {
+			$ten += $array[$c - $i] * factorial($i);
+		}
+
+		$result .= $ten . "\n";
 	}
 
 	echo $result;
 
 }catch(Exception $e){
 	$result = $e->getMessage();
+}
+
+function factorial($n){
+
+	$result = 1;
+
+	for ($i=1; $i <= $n; $i++) { 
+		$result *= $i;
+	}
+
+	return $result;
 }
