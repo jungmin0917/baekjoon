@@ -1,0 +1,8 @@
+
+array_map은 foreach에 비해 큰 메모리 소모와 시간이 걸린다
+
+특히 array가 large할수록 더 그렇다
+
+https://gist.github.com/mardix/38895305786610152efa
+
+위의 링크를 참고할 것

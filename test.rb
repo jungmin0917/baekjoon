@@ -1,18 +1,14 @@
 
 n = gets.chomp.to_i;
 
-result = 0;
+count = 0;
 
 for i in 1..n do
-    a = gets.chomp.to_i;
-
-	result += a;
-
-	if i > 100000
-        break;
+    if i % i.to_s.split("").map(&:to_i).sum == 0
+        count += 1;
     end
 end
 
-result = "#{i}\n#{result}";
+result = count;
 
 puts result;
