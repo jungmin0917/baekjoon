@@ -1,14 +1,26 @@
 
-n = gets.chomp.to_i;
+c = gets.chomp.to_i;
 
-count = 0;
+result = "";
 
-for i in 1..n do
-    if i % i.to_s.split("").map(&:to_i).sum == 0
-        count += 1;
+for i in 0..c-1 do
+    temp = gets.chomp.to_i;
+    n = gets.chomp.to_i;
+
+    rest = 0;
+
+    for j in 0..n-1 do
+        candy = gets.chomp.to_i;
+        
+        rest += candy % n;
+        rest %= n;
+    end
+
+    if rest > 0
+        result += "NO\n";
+    else
+        result += "YES\n";
     end
 end
-
-result = count;
 
 puts result;
