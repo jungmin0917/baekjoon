@@ -1,8 +1,8 @@
 
-from decimal import Decimal;
+def solve(a):
+    ans = 0
 
-a, b, c = map(int, input().split());
+    for n in a:
+        ans += n;
 
-result = Decimal(a * b) / Decimal(c);
-
-print(result);
+    return ans
