@@ -4,24 +4,35 @@ try{
 
 	$result = "";
 
-	fscanf(STDIN, "%d %d %d", $a, $b, $c);
+	while(true){
+		fscanf(STDIN, "%d %d", $a, $b);
 
-	$ab = $a * $b;
+		if(!$a && !$b){
+			break;
+		}
 
-	// 정수부, 소수부를 따로 나누어 계산한다는 idea가 필요.
+		// a: 봉제인형 수
+		// b: 침실로 돌아오지 못한 봉제인형 수
 
-	// max precision이 16~17자리인 것을 감안하여
-	// 정수 부분, 소수 부분을 따로 계산하여 합치는 방식으로 가도록 할 것이다
+		$n = $a - $b;
 
-	// 나머지 연산은, for문으로 가정했을 때, 그냥 빼기만 하면 되는 거라 max precision issue가 없을 것이라고 생각됨
+		if($n >= 4){
+			if($n % 2 == 0){
+				$result .= intdiv($n, 2) . " 0";
+			}else{
+				$n -= 3;
+				$result .= intdiv($n, 2) . " 1";
+			}
+		}else if($n == 3){
+			$result .= "0 1";
+		}else if($n == 2){
+			$result .= "1 0";
+		}else{
+			$result .= "0 0";
+		}
 
-	$integer = intdiv($a * $b, $c); // 정수 부분 나눗셈
-
-	$decimal = strval(($a * $b % $c) / $c); // decimal은 소수를 뜻함. 이렇게 하면 나머지를 c로 나누는 거라 충분히 가능
-
-	$decimal = str_replace("0.", "", $decimal);
-
-	$result = "{$integer}.{$decimal}";
+		$result .= "\n";
+	}
 
 	echo $result;
 
