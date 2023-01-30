@@ -4,17 +4,101 @@ try{
 
 	$result = "";
 
-	fscanf(STDIN, "%d %d %d", $p1, $p2, $p3); // 각 물품의 가격
-	fscanf(STDIN, "%d %d %d", $c1, $c2, $c3); // c1은 전체 구매 할인쿠폰 (단독사용만 가능), c2, c3는 하나의 물품에 할인을 제공하는 쿠폰의 할인율
+	fscanf(STDIN, "%s", $a);
+	fscanf(STDIN, "%s", $b);
 
-	// 전체 금액 쿠폰이 더 싸면 one과 절약한 금액
-	// 두 개의 쿠폰이 더 싸면, two와 절약 가능한 최대 금액
-	// 소수점 둘째자리까지
+	$a_len = strlen($a);
+	$b_len = strlen($b);
 
+	if($a_len < $b_len){
+		list($a, $b) = [$b, $a];
+		list($a_len, $b_len) = [$b_len, $a_len];
+	}
+
+	$result .= "{$a}\n{$b}\n";
+
+	$sum_arr = array();
+
+	for ($i=$b_len - 1; $i >= 0; $i--) {
+		$ans = array_fill(0, $a_len, 0);
+
+		for ($j=$a_len - 1; $j >= 0; $j--) {
+			$ans[$j] += $a[$j] * $b[$i];
+		}
+
+		for ($j=count($ans) - 1; $j >= 1; $j--) {
+			$next = intdiv($ans[$j], 10);
+			$ans[$j] %= 10;
+			$ans[$j - 1] += $next;
+		}
+
+		$ans = implode($ans);
+
+		if($ans == 0){
+			$ans = 0;
+		}
+
+		$result .= $ans . "\n";
+	}
+
+	$result .= bigmul($a, $b);
 	
-
 	echo $result;
 
 }catch(Exception $e){
 	$result = $e->getMessage();
+}
+
+function bigmul($a, $b){
+
+    $a_arr = str_split($a);
+    $b_arr = str_split($b);
+
+    // 둘 중 하나가 음수면 결과 음수
+
+    $minus = false; // 음수 여부
+
+    if(($a_arr[0] == "-" && $b_arr[0] != "-") || ($a_arr[0] != "-" && $b_arr[0] == "-")){
+        $minus = true;
+    }
+    
+    if($a_arr[0] == "-"){
+        array_shift($a_arr);
+    }
+    
+    if($b_arr[0] == "-"){
+        array_shift($b_arr);
+    }
+
+    $a_c = count($a_arr);
+    $b_c = count($b_arr);
+
+    // x자리수와 y자리수 곱하면 최대 x+y 자리수이므로 미리 채워놓는다
+
+    $ans = array_fill(0, $a_c + $b_c - 1, 0);
+
+    for ($i=0; $i < $a_c; $i++) { 
+        for ($j=0; $j < $b_c; $j++) {
+            $ans[$i + $j] += $a_arr[$i] * $b_arr[$j];
+        }
+    }
+
+    $ans_c = count($ans);
+
+    $next = 0;
+
+    for ($i=$ans_c - 1; $i > 0; $i--) {
+        $next = intdiv($ans[$i], 10);
+        $ans[$i] %= 10;
+
+        $ans[$i - 1] += $next;
+    }
+
+    $answer = implode($ans);
+
+    if($minus){
+        $answer = "-" . $answer;
+    }
+
+    return $answer;
 }

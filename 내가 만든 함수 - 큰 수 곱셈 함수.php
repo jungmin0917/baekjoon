@@ -26,20 +26,11 @@ function bigmul($a, $b){
 
     // x자리수와 y자리수 곱하면 최대 x+y 자리수이므로 미리 채워놓는다
 
-    $ans = array_fill(0, $a_c + $b_c, 0);
+    $ans = array_fill(0, $a_c + $b_c - 1, 0);
 
     for ($i=0; $i < $a_c; $i++) { 
         for ($j=0; $j < $b_c; $j++) {
             $ans[$i + $j] += $a_arr[$i] * $b_arr[$j];
-        }
-    }
-
-    // 끝부분부터 0인 거 버리기
-    while(true){
-        if(end($ans) == 0){
-            array_pop($ans);
-        }else{
-            break;
         }
     }
 

@@ -164,6 +164,10 @@ function bigsum($a, $b){
                 $sub = "-" . $sub;
             }
 
+            if(!$sub){
+                $sub = 0;
+            }
+
             return $sub;
 
         }else{ // 자릿수가 다른 경우
@@ -221,6 +225,10 @@ function bigsum($a, $b){
 
             if($negative){
                 $sub = "-" . $sub;
+            }
+
+            if(!$sub){
+                $sub = 0;
             }
 
             return $sub;

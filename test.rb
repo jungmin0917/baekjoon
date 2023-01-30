@@ -1,26 +1,13 @@
 
-c = gets.chomp.to_i;
-
 result = "";
 
-for i in 0..c-1 do
-    temp = gets.chomp.to_i;
-    n = gets.chomp.to_i;
+while input = gets
+    r, s = input.chomp.split();
 
-    rest = 0;
+    r = r.to_i;
+    s = s.to_f;
 
-    for j in 0..n-1 do
-        candy = gets.chomp.to_i;
-        
-        rest += candy % n;
-        rest %= n;
-    end
-
-    if rest > 0
-        result += "NO\n";
-    else
-        result += "YES\n";
-    end
+    result += (((r * (s + 0.16)) / 0.067) ** 0.5).round().to_s + "\n";
 end
 
 puts result;
