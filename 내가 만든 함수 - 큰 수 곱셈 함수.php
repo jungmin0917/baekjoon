@@ -47,6 +47,10 @@ function bigmul($a, $b){
 
     $answer = implode($ans);
 
+    if($answer == 0){
+        $answer = 0;
+    }
+
     if($minus){
         $answer = "-" . $answer;
     }

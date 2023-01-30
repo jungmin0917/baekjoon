@@ -1,25 +1,18 @@
 
 result = "";
 
-n = int(input());
+a = int(input());
+b = int(input());
 
-seq = list(map(int, input().split()));
+b_arr = list(map(int, str(b)));
 
-m = int(input());
+b_len = len(b_arr);
 
-for i in range(0, m):
-    k, l, r = map(int, input().split());
+result += f"{a}\n{b}\n";
 
-    if k == 2:
-        sum = 0;
+for i in range(b_len-1, -1, -1):
+    result += str(a * b_arr[i]) + "\n";
 
-        for j in range(l-1, r):
-            sum += seq[j];
-
-        result += str(sum) + "\n";
-
-    else:
-        for j in range(l-1, r):
-            seq[j] = (seq[j] ** 2) % 2010;
+result += str(a * b);
 
 print(result);
