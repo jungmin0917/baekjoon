@@ -4,30 +4,22 @@ try{
 
 	$result = "";
 
-	fscanf(STDIN, "%d %d", $n, $c);
+	while($input = trim(fgets(STDIN))){
+		list($n, $b, $m) = explode(" ", $input);
 
-	// 최대공약수부터 찾아야 함
-	echo euclid(4, 6);
+		// n원 저금 후 1년이 지날 때마다 통장에 저금되어 있는 돈의 B% 만큼이 이자로 적립됨
+		// 몇 년이 지나야 통장의 돈이 M원을 넘을지 구하기
 
-	// 최소공배수 찾기
+		$rate = $m / $n;
+		$bogri = 1 + ($b / 100);
+
+		$result .= ceil(log($rate) / log($bogri)) . "\n";
+
+		// 기간은 log(목표 자금 / 현재 자금) / log(1 + 복리 이자율)이다
+	}
 
 	echo $result;
 
 }catch(Exception $e){
 	$result = $e->getMessage();
-}
-
-// 최대공약수 찾는 함수
-function euclid($a, $b){
-	// 큰 거 % 작은 거 = 0이 될 때가 최대공약수
-
-	list($max, $min) = [max($a, $b), min($a, $b)];
-
-	while(true){
-		if($max % $min == 0){
-			return $min;
-		}else{
-			list($max, $min) = [$min, $max % $min];
-		}
-	}
 }
