@@ -49,6 +49,3 @@ function get_match_table($pattern){
 
     return $table;
 }
-
-
-

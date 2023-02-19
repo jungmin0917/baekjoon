@@ -1,2 +1,7 @@
-n=int(input())
-print(f"%.{n}f"%(2**-n))
+
+s1 = input()
+s2 = input()
+
+patt = input()
+
+if 

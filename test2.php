@@ -1,1 +1,1 @@
-<?while(list($n,$b,$m)=explode(" ",fgets(STDIN))){echo ceil(log($m/$n)/log(1+($b/100)))."\n";}
+<?while(($s=trim(fgets(STDIN)))!=="#"){echo(!preg_replace("/[bdpqiovwx]/","",$s)?strrev(strtr($s,"bdpq","dbqp")):"INVALID")."\n";}
