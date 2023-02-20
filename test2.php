@@ -1,1 +1,1 @@
-<?while(($s=trim(fgets(STDIN)))!=="#"){echo(!preg_replace("/[bdpqiovwx]/","",$s)?strrev(strtr($s,"bdpq","dbqp")):"INVALID")."\n";}
+<?$n=fgets(STDIN)%10;$s="SciComLove";echo substr($s,$n).substr($s,0,$n);
