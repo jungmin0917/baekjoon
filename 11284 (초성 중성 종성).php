@@ -3,14 +3,20 @@
 try{
 
 	$result = "";
-	
-	for ($i=0; $i < 3; $i++) {
-		fscanf(STDIN, "%s", $s);
 
-		$unicode = ord8($s);
+	$s = trim(fgets(STDIN));
 
-		echo $unicode . "\n";
-	}
+	$unicode = ord8($s);
+
+	$cho = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+    $jung = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+    $jong = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+	$first = intdiv($unicode - 0xAC00, 588);
+	$middle = intdiv($unicode - 0xAC00 - ($first * 588), 28);
+	$last = ($unicode - 0xAC00) % 28;
+
+	$result .= "{$cho[$first]}\n{$jung[$middle]}\n{$jong[$last]}";
 
 	echo $result;
 
