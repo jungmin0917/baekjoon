@@ -1,3 +1,1 @@
-n=(gets+0)%10
-s="SciComLove"
-puts s[n..-1]+s[0...n]
+p (gets.to_i+1).times.count{|i|i.to_s.match(/2.*0.*2.*3/)}

@@ -1,1 +1,1 @@
-<?$n=fgets(STDIN)%10;$s="SciComLove";echo substr($s,$n).substr($s,0,$n);
+<?fgets(STDIN);echo str_replace("joi","JOI",fgets(STDIN));
