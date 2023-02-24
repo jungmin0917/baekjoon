@@ -1,5 +1,6 @@
 <?php
 
+// 아래의 함수는 완성된 하나의 음절의 유니코드를 얻을 때 쓴다
 function ord8($c) {
     $len = strlen($c);
     if ($len <= 0) return false;

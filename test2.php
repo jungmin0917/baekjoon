@@ -1,1 +1,1 @@
-<?fgets(STDIN);echo str_replace("joi","JOI",fgets(STDIN));
+<?$n=fgets(STDIN);for($i=1;$i<=$n;$i++){fscanf(STDIN,"%s%d'%d\"%d'%d\"",$s,$a,$b,$c,$d);$h=($a+$c)*12+$b+$d;$h+=$s=="B"?5:-5;$x=floor($h/2+4);$m=ceil($h/2-4);echo "Case #{$i}: ".intdiv($m,12)."'".($m%12)."\" to ".intdiv($x,12)."'".($x%12)."\"\n";}

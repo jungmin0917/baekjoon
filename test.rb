@@ -1,1 +1,1 @@
-p (gets.to_i+1).times.count{|i|i.to_s.match(/2.*0.*2.*3/)}
+p 8**gets.to_i
