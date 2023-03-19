@@ -77,5 +77,5 @@ function bigdiv($a, $b){
         $a = implode($a);
     }
 
-    return "{$now_count}\n{$a}";
+    return "{$now_count}";
 }
